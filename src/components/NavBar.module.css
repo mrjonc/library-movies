@@ -1,0 +1,102 @@
+:root {
+  --navbar-color: rgb(38, 35, 35);
+  --body-color: rgb(17, 17, 17);
+  --buttons: rgb(218, 201, 9);
+  --buttons-hover: rgb(153, 141, 9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-color);
+}
+
+.container {
+  background-color: var(--navbar-color);
+  width: 100%;
+}
+
+.container .logo {
+  display: flex;
+  gap: 3px;
+}
+
+.container .logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container .logoLink h1 {
+  color: white;
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.searchForm input {
+  padding: 0.7rem;
+  border-radius: 0.4rem;
+  border: none;
+  outline: none;
+}
+
+.searchForm button {
+  padding: 0.8rem;
+  border-radius: 0.4rem;
+  border: none;
+  background-color: var(--buttons);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.searchForm button:hover {
+  background-color: var(--buttons-hover);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .container .logoLink h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .searchForm {
+    width: 100%;
+  }
+
+  .searchForm input {
+    flex: 1;
+  }
+}
