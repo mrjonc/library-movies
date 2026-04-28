@@ -1,0 +1,66 @@
+:root {
+  --buttons: rgb(218, 201, 9);
+  --buttons-hover: rgb(153, 141, 9);
+  --star-color: yellow;
+  --font-family: "Bebas Neue", sans-serif;
+  --card-hover: rgb(42, 40, 40);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.pageTitle {
+  color: white;
+  font-family: var(--font-family);
+  margin-bottom: 1.2rem;
+}
+
+.movieGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.posterImg {
+  max-width: 300px;
+  text-align: left;
+  border-radius: 0.5rem;
+}
+
+.rating {
+  color: var(--star-color);
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.movieName {
+  color: white;
+  font-family: var(--font-family);
+  font-weight: bold;
+}
+
+.button {
+  background-color: var(--buttons);
+  color: white;
+  padding: 0.8rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.button:hover {
+  background-color: var(--buttons-hover);
+}
