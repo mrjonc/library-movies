@@ -64,3 +64,65 @@
 .button:hover {
   background-color: var(--buttons-hover);
 }
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .movieName {
+    font-size: 0.8rem;
+  }
+
+  .movieGrid {
+    gap: 1rem;
+  }
+
+  .card {
+    width: 45%;
+    min-width: 150px;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .posterImg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .button {
+    width: 80%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movieGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .posterImg {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .movieName {
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+
+  .rating {
+    font-size: 0.65rem;
+  }
+}
