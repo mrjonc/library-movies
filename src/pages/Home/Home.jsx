@@ -22,7 +22,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const getAllMoviesURL = `${movieURL}discover/movie?${apiKey}&page=${page}`;
+    const getAllMoviesURL = `${movieURL}discover/movie?${apiKey}&language=pt-BR&page=${page}`;
 
     getMovies(getAllMoviesURL);
   }, [page]);
