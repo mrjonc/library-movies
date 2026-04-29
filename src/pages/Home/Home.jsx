@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const movieURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -32,7 +33,11 @@ const Home = () => {
 
       <div className={styles.movieGrid}>
         {movies.map((movie) => (
-          <div className={styles.card} key={`${movie.id}-${Math.random()}`}>
+          <Link
+            className={styles.card}
+            to={`/movie/${movie.id}`}
+            key={`${movie.id}-${Math.random()}`}
+          >
             <img
               className={styles.posterImg}
               src={`${imagesURL}${movie.poster_path}`}
@@ -43,15 +48,11 @@ const Home = () => {
               {movie.vote_average.toFixed(1)}
             </p>
             <p className={styles.movieName}>{movie.title}</p>
-          </div>
+          </Link>
         ))}
       </div>
 
-      {/* Botão para carregar mais */}
-      <button
-        onClick={() => setPage(page + 1)} // Aumenta a página, disparando o useEffect
-        className={styles.button}
-      >
+      <button onClick={() => setPage(page + 1)} className={styles.button}>
         Carregar Mais...
       </button>
     </div>
