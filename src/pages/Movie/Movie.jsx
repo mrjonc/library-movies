@@ -26,7 +26,7 @@ const Movie = () => {
     getMovie(movieUrlDetails);
   }, [id]);
 
-  if (!movie) return <p>Carregando...</p>;
+  if (!movie) return <p style={{ color: "white" }}>Carregando...</p>;
   return (
     <div className={styles.details}>
       <header className={styles.header}>
