@@ -1,0 +1,91 @@
+:root {
+  --navbar-color: rgb(38, 35, 35);
+  --body-color: rgb(17, 17, 17);
+  --buttons: rgb(218, 201, 9);
+  --buttons-hover: rgb(153, 141, 9);
+  --font-family: "Bebas Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.posterImg {
+  margin-bottom: 5rem;
+  border-radius: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  padding: 0 1rem;
+}
+
+.header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  margin: 0 auto;
+  gap: 1.3rem;
+}
+
+.titleGroup {
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  gap: 2rem;
+}
+
+.container h2 {
+  color: yellow;
+  display: flex;
+
+  justify-content: center;
+}
+
+.container p {
+  max-width: 90ch;
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font: 1rem;
+  }
+
+  .container {
+    gap: 1rem;
+    padding: 0 0.7rem;
+  }
+
+  .container p {
+    font-size: 0.7rem;
+  }
+}
