@@ -26,7 +26,20 @@ const Movie = () => {
     getMovie(movieUrlDetails);
   }, [id]);
 
-  if (!movie) return <p style={{ color: "white" }}>Carregando...</p>;
+  if (!movie)
+    return (
+      <p
+        style={{
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "100vh",
+        }}
+      >
+        Carregando...
+      </p>
+    );
   return (
     <div className={styles.details}>
       <header className={styles.header}>
