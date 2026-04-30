@@ -18,10 +18,13 @@ body {
 
 .posterImg {
   margin-bottom: 5rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   max-width: 100%;
   height: auto;
-  padding: 0 1rem;
+  /* Removemos o padding que criava espaçamento interno e impedia o recorte da imagem */
+  padding: 0;
+  /* Garante que a imagem se ajuste perfeitamente ao tamanho da borda */
+  object-fit: cover;
 }
 
 .header {
@@ -50,7 +53,6 @@ body {
 .container h2 {
   color: yellow;
   display: flex;
-
   justify-content: center;
 }
 
