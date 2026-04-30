@@ -1,9 +1,8 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link, useSearchParams, useNavigationType } from "react-router-dom";
 import styles from "./Search.module.css";
 import { FaStar } from "react-icons/fa";
 
-// Configurações da API vindas do .env
 const movieURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imagesURL = "https://image.tmdb.org/t/p/w500/";
@@ -11,6 +10,7 @@ const imagesURL = "https://image.tmdb.org/t/p/w500/";
 const Search = () => {
   const [searchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
+  const hasRestoredScroll = useRef(false);
 
   const query = searchParams.get("q");
   const navigationType = useNavigationType();
@@ -34,7 +34,7 @@ const Search = () => {
     if (window.performance) {
       const navEntries = window.performance.getEntriesByType("navigation");
       if (navEntries.length > 0 && navEntries[0].type === "reload") {
-        sessionStorage.clear();
+        sessionStorage.removeItem("scrollPos");
         window.scrollTo(0, 0);
       }
     }
@@ -47,16 +47,25 @@ const Search = () => {
     }
   }, [query]);
 
+  useEffect(() => {
+    hasRestoredScroll.current = false;
+  }, [query]);
+
   useLayoutEffect(() => {
-    if (navigationType === "POP") {
+    if (
+      navigationType === "POP" &&
+      movies.length > 0 &&
+      !hasRestoredScroll.current
+    ) {
       const savedPosition = sessionStorage.getItem("scrollPos");
 
       if (savedPosition) {
         window.scrollTo(0, parseInt(savedPosition, 10));
-        sessionStorage.removeItem("scrollPos"); // Limpa após utilizar
+        sessionStorage.removeItem("scrollPos");
+        hasRestoredScroll.current = true;
       }
     }
-  }, [navigationType]);
+  }, [navigationType, movies]);
 
   return (
     <div className={styles.container}>
