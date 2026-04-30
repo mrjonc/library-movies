@@ -7,13 +7,38 @@ const movieURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imagesURL = "https://image.tmdb.org/t/p/w500/";
 
+const checkIsReload = () => {
+  if (typeof window === "undefined") return false;
+  const p = window.performance;
+  if (!p) return false;
+
+  if (p.getEntriesByType) {
+    const entries = p.getEntriesByType("navigation");
+    if (entries.length > 0) {
+      return entries[0].type === "reload";
+    }
+  }
+
+  if (p.navigation) {
+    return p.navigation.type === 1;
+  }
+
+  return false;
+};
+
 const Home = () => {
   const [movies, setMovies] = useState(() => {
+    if (checkIsReload()) {
+      return [];
+    }
     const savedMovies = sessionStorage.getItem("savedMovies");
     return savedMovies ? JSON.parse(savedMovies) : [];
   });
 
   const [page, setPage] = useState(() => {
+    if (checkIsReload()) {
+      return 1;
+    }
     const savedPage = sessionStorage.getItem("currentPage");
     return savedPage ? parseInt(savedPage) : 1;
   });
@@ -40,12 +65,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const navEntries = window.performance.getEntriesByType("navigation");
-    if (navEntries.length > 0 && navEntries[0].type === "reload") {
+    if (checkIsReload()) {
       sessionStorage.clear();
       window.scrollTo(0, 0);
-      setMovies([]);
-      setPage(1);
     }
   }, []);
 
@@ -62,19 +84,24 @@ const Home = () => {
   }, [page]);
 
   useEffect(() => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
     const savedPosition = sessionStorage.getItem("scrollPos");
 
-    if (movies.length > 0 && savedPosition) {
+    if (savedPosition) {
       const timer = setTimeout(() => {
         window.scrollTo(0, parseInt(savedPosition));
         sessionStorage.removeItem("scrollPos");
-      }, 150);
+      }, 300);
+
       return () => clearTimeout(timer);
     }
-  }, [movies]);
+  }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ minHeight: "150vh" }}>
       <h2 className={styles.pageTitle}>Explorar Filmes</h2>
 
       <div className={styles.movieGrid}>
