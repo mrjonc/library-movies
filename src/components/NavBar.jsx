@@ -32,7 +32,6 @@ const NavBar = () => {
           </div>
         </nav>
       </section>
-      <Outlet />
     </>
   );
 };
