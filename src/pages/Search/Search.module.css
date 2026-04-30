@@ -1,0 +1,130 @@
+:root {
+  --navbar-color: rgb(38, 35, 35);
+  --body-color: rgb(17, 17, 17);
+  --buttons: rgb(218, 201, 9);
+  --buttons-hover: rgb(153, 141, 9);
+  --font-family: "Bebas Neue", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  min-height: 150vh;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.search {
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.movieGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* a {
+  text-decoration: none;
+  color: white;
+} */
+
+.rating {
+  color: var(--star-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.movieName {
+  color: white;
+  font-family: var(--font-family);
+  font-weight: bold;
+  text-align: center;
+}
+
+.posterImg {
+  max-width: 300px;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .search {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .movieName {
+    font-size: 0.8rem;
+  }
+
+  .movieGrid {
+    gap: 1rem;
+  }
+
+  .card {
+    width: 45%;
+    min-width: 150px;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .posterImg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .button {
+    width: 80%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movieGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .posterImg {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .movieName {
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+
+  .rating {
+    font-size: 0.65rem;
+  }
+}

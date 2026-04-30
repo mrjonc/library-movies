@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 import { FaStar } from "react-icons/fa";
 
-// Configurações da API vindas do .env
 const movieURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imagesURL = "https://image.tmdb.org/t/p/w500/";
 
 const Home = () => {
-  // 1. Estados iniciais: tentam recuperar dados do sessionStorage para não perder o progresso ao voltar
   const [movies, setMovies] = useState(() => {
     const savedMovies = sessionStorage.getItem("savedMovies");
     return savedMovies ? JSON.parse(savedMovies) : [];
@@ -20,23 +18,19 @@ const Home = () => {
     return savedPage ? parseInt(savedPage) : 1;
   });
 
-  // Função para buscar filmes na API
   const getMovies = async (url) => {
     try {
       const res = await fetch(url);
       const data = await res.json();
 
       setMovies((prevMovies) => {
-        // Combina filmes atuais com os novos da próxima página
         const combinedMovies = [...prevMovies, ...data.results];
 
-        // FILTRO DE DUPLICADOS: Garante que cada filme apareça apenas uma vez pelo ID
         const uniqueMovies = combinedMovies.filter(
           (movie, index, self) =>
             index === self.findIndex((m) => m.id === movie.id),
         );
 
-        // Salva a lista limpa no storage para persistência
         sessionStorage.setItem("savedMovies", JSON.stringify(uniqueMovies));
         return uniqueMovies;
       });
@@ -45,7 +39,6 @@ const Home = () => {
     }
   };
 
-  // EFEITO 1: Limpa tudo se o usuário der Reload (F5) na página
   useEffect(() => {
     const navEntries = window.performance.getEntriesByType("navigation");
     if (navEntries.length > 0 && navEntries[0].type === "reload") {
@@ -56,11 +49,9 @@ const Home = () => {
     }
   }, []);
 
-  // EFEITO 2: Monitora a mudança de página e decide se precisa buscar novos dados
   useEffect(() => {
     const getAllMoviesURL = `${movieURL}discover/movie?${apiKey}&language=pt-BR&page=${page}`;
 
-    // Só busca se a quantidade de filmes for menor do que o esperado para a página atual
     const shouldFetch = movies.length < page * 20;
 
     if (shouldFetch) {
@@ -70,12 +61,10 @@ const Home = () => {
     sessionStorage.setItem("currentPage", page);
   }, [page]);
 
-  // EFEITO 3: Restaura a posição do scroll quando os filmes terminam de carregar
   useEffect(() => {
     const savedPosition = sessionStorage.getItem("scrollPos");
 
     if (movies.length > 0 && savedPosition) {
-      // Pequeno atraso para garantir que o DOM renderizou os cards
       const timer = setTimeout(() => {
         window.scrollTo(0, parseInt(savedPosition));
         sessionStorage.removeItem("scrollPos");
@@ -93,7 +82,7 @@ const Home = () => {
           <Link
             className={styles.card}
             to={`/movie/${movie.id}`}
-            key={movie.id} // Chave única e estável
+            key={movie.id}
             onClick={() => sessionStorage.setItem("scrollPos", window.scrollY)}
           >
             <img

@@ -26,9 +26,25 @@ body {
   gap: 3px;
 }
 
+.backButton,
+.forwardButton {
+  background-color: transparent;
+  border: none;
+  transition: 0.5s;
+}
+
+.backButton:hover,
+.forwardButton:hover {
+  background-color: rgb(45, 44, 44);
+  border-radius: 0.5rem;
+}
+
 .container .logoLink {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .container .logoLink h1 {
@@ -36,6 +52,12 @@ body {
   margin: 0;
   font-family: var(--font-family);
   letter-spacing: 1px;
+}
+
+.containerLogo {
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .navbar {
