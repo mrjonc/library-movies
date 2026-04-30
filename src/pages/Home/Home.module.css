@@ -33,11 +33,23 @@
 .card {
   cursor: pointer;
   text-decoration: none;
+  width: calc((100% - 6rem) / 4);
+  min-width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 0.6rem;
+}
+
+.card:hover {
+  transform: scale(1.02);
 }
 
 .posterImg {
-  max-width: 300px;
-  text-align: left;
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
   border-radius: 0.5rem;
 }
 
@@ -46,12 +58,22 @@
   display: flex;
   justify-content: center;
   gap: 0.3rem;
+  margin-top: 0.6rem;
 }
 
 .movieName {
   color: white;
   font-family: var(--font-family);
   font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3rem;
+  text-align: center;
+  margin: 0.3rem 0.6rem;
 }
 
 .button {
@@ -60,10 +82,22 @@
   padding: 0.8rem;
   cursor: pointer;
   border-radius: 0.5rem;
+  border: none;
+  font-weight: bold;
+  margin: 0 0.6rem;
+  transition: background-color 0.2s;
 }
 
 .button:hover {
   background-color: var(--buttons-hover);
+}
+@media (max-width: 1024px) {
+  .movieGrid {
+    gap: 1.5rem;
+  }
+  .card {
+    width: calc((100% - 3rem) / 3);
+  }
 }
 
 @media (max-width: 768px) {
@@ -74,10 +108,12 @@
 
   .movieName {
     font-size: 0.8rem;
+    height: 2.5rem;
   }
 
   .movieGrid {
     gap: 1rem;
+    justify-content: center;
   }
 
   .card {
@@ -90,8 +126,7 @@
   }
 
   .posterImg {
-    max-width: 100%;
-    height: auto;
+    height: 280px;
   }
 
   .button {
@@ -103,24 +138,26 @@
 
 @media (max-width: 480px) {
   .movieGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 10px;
     padding: 0 10px;
   }
 
   .card {
-    width: 100%;
+    width: 48%;
+    min-width: auto;
   }
 
   .posterImg {
-    max-width: 100%;
-    border-radius: 4px;
+    height: 220px;
   }
 
   .movieName {
     font-size: 0.65rem;
     line-height: 1.1;
+    height: 2.2rem;
   }
 
   .rating {
