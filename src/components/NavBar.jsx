@@ -21,44 +21,41 @@ const NavBar = () => {
     setSearch("");
   };
 
-  const isMoviePage =
-    location.pathname.startsWith("/movie/") ||
-    location.pathname.startsWith("/search");
+  // const isMoviePage =
+  //   location.pathname.startsWith("/movie/") ||
+  //   location.pathname.startsWith("/search");
   return (
     <>
       <section className={styles.container}>
         <nav className={styles.navbar}>
           <div className={styles.containerLogo}>
-            {isMoviePage && (
-              <button
-                className={styles.backButton}
-                onClick={() => navigate(-1)}
-              >
-                <IoArrowBackSharp
-                  style={{
-                    color: "white",
-                    fontSize: "1.6rem",
-                    cursor: "pointer",
-                  }}
-                  title="Voltar"
-                />
-              </button>
-            )}
-            {isMoviePage && (
-              <button
-                className={styles.forwardButton}
-                onClick={() => navigate(1)}
-              >
-                <IoArrowForward
-                  style={{
-                    color: "white",
-                    fontSize: "1.6rem",
-                    cursor: "pointer",
-                  }}
-                  title="Avançar"
-                />
-              </button>
-            )}
+            {/* {isMoviePage && ( */}
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+              <IoArrowBackSharp
+                style={{
+                  color: "white",
+                  fontSize: "1.6rem",
+                  cursor: "pointer",
+                }}
+                title="Voltar"
+              />
+            </button>
+            {/* )} */}
+            {/* {isMoviePage && ( */}
+            <button
+              className={styles.forwardButton}
+              onClick={() => navigate(1)}
+            >
+              <IoArrowForward
+                style={{
+                  color: "white",
+                  fontSize: "1.6rem",
+                  cursor: "pointer",
+                }}
+                title="Avançar"
+              />
+            </button>
+            {/* )} */}
 
             <Link to="/" className={styles.logoLink}>
               <h1 className={styles.logo}>
